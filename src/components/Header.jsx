@@ -5,11 +5,7 @@ import { useAuth } from "../utils/AuthContext";
 const Header = () => {
   const navigate = useNavigate();
 
-  const user = useAuth();
-
-  const logoutClick = () => {
-    navigate("/login");
-  };
+  const { user, logoutUser } = useAuth();
 
   return (
     <div className="header">
@@ -21,26 +17,23 @@ const Header = () => {
 
       <div className="links--wrapper">
         {user ? (
- <>
-<Link to="/" className="header--link">
+          <>
+            <Link to="/" className="header--link">
               Home
             </Link>
             <Link to="/profile" className="header--link">
               Profile
             </Link>
-  
-            <button onClick={logoutClick} className="btn">
+
+            <button onClick={logoutUser} className="btn">
               Logout
             </button>
- 
-</>
-        ):(
-          
-            <Link className="btn" to="/login">Login</Link>
-          
+          </>
+        ) : (
+          <Link className="btn" to="/login">
+            Login
+          </Link>
         )}
-        
-       
       </div>
     </div>
   );
